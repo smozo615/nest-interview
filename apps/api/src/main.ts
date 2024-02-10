@@ -1,7 +1,7 @@
+import * as process from 'process';
 import { Logger } from '@nestjs/common';
 import { SwaggerModule } from '@nestjs/swagger';
 import { createSwaggerDocument, getApp, globalPrefix } from '@ocmi/api/bootstrap';
-import * as process from 'process';
 
 async function bootstrap() {
   const app = await getApp();
@@ -10,8 +10,10 @@ async function bootstrap() {
 
   SwaggerModule.setup(`${globalPrefix}/docs`, app, document);
 
-  const port = process.env.PORT || 3000;
+  const port = process.env.APP_PORT || 3000;
+
   await app.listen(port);
+
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
   );
