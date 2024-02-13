@@ -2,17 +2,14 @@ import { Module } from '@nestjs/common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-// import { HelloCommand } from '@ocmi/api/commands/hello.command';
-// import { PrismaModule } from 'nestjs-prisma';
+
+import { DatabaseModule } from '../libs/database/database.module';
+import { EmployeeModule } from './employees/employee.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [
-    // PrismaModule,
-  ],
+  imports: [AuthModule, DatabaseModule, EmployeeModule],
   controllers: [AppController],
-  providers: [
-    AppService,
-    // HelloCommand
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

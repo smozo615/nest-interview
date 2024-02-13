@@ -3129,6 +3129,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/cqrs@npm:^10.2.7":
+  version: 10.2.7
+  resolution: "@nestjs/cqrs@npm:10.2.7"
+  dependencies:
+    uuid: "npm:9.0.1"
+  peerDependencies:
+    "@nestjs/common": ^9.0.0 || ^10.0.0
+    "@nestjs/core": ^9.0.0 || ^10.0.0
+    reflect-metadata: ^0.1.13 || ^0.2.0
+    rxjs: ^7.2.0
+  checksum: a3ad7c8ee0794a21fbf60fefacc18caefa14febe3162275521d5fae9048d49ad0237abfa1faa2905d645ba0db29cd2e329ec4ae45ace8ed02e02ae2054a52a8f
+  languageName: node
+  linkType: hard
+
 "@nestjs/event-emitter@npm:^2.0.3":
   version: 2.0.3
   resolution: "@nestjs/event-emitter@npm:2.0.3"
@@ -4729,6 +4743,7 @@ __metadata:
     "@nestjs/common": "npm:^10.3.0"
     "@nestjs/config": "npm:^3.1.1"
     "@nestjs/core": "npm:^10.3.0"
+    "@nestjs/cqrs": "npm:^10.2.7"
     "@nestjs/event-emitter": "npm:^2.0.3"
     "@nestjs/jwt": "npm:^10.2.0"
     "@nestjs/passport": "npm:^10.0.3"
@@ -4809,6 +4824,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:4.6.0"
     express-list-routes: "npm:^1.1.9"
     fs-extra: "npm:^11.2.0"
+    helmet: "npm:^7.1.0"
     http-status-codes: "npm:^2.3.0"
     jest: "npm:^29.4.1"
     jest-environment-jsdom: "npm:^29.4.1"
@@ -5037,14 +5053,14 @@ __metadata:
   linkType: hard
 
 "@prisma/client@npm:^5.8.1":
-  version: 5.9.0
-  resolution: "@prisma/client@npm:5.9.0"
+  version: 5.9.1
+  resolution: "@prisma/client@npm:5.9.1"
   peerDependencies:
     prisma: "*"
   peerDependenciesMeta:
     prisma:
       optional: true
-  checksum: d7e62159180f264760dc60f267350fd78691e49b5cbb2f00377080aabb5264001bf306fa5db0ed6dab3589e6d95a6320ea7d2888e18e51866332accacc8fea3f
+  checksum: 2a661cec8fa94697ee5346e4cc793a7f3ae563ef2427cb15b6b9f712af9368010ede3f854bf75b39b5601db131d4c49cb175449f2f9a281c968685a3507ae183
   languageName: node
   linkType: hard
 
@@ -14315,6 +14331,13 @@ __metadata:
   version: 4.0.2
   resolution: "headers-polyfill@npm:4.0.2"
   checksum: 70b53abf48a1d50760150624d6c7ca974a0d286ba102e411538f6dad6687ce51ce7cc60197e326df96f844548d6ff77d900e28c3cdbc0ba1fe09a05eae47156a
+  languageName: node
+  linkType: hard
+
+"helmet@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "helmet@npm:7.1.0"
+  checksum: aa13b0907d9d31b65e4ec73093b58d7e94e83c06818cc06869f5eb95d205574a14f01ed71cadfac4a68b736a1a6d7ef2290f3f6ef77ac664c7e75b8f9eddf88c
   languageName: node
   linkType: hard
 
@@ -23607,21 +23630,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"uuid@npm:9.0.1, uuid@npm:^9.0.0, uuid@npm:^9.0.1":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 9d0b6adb72b736e36f2b1b53da0d559125ba3e39d913b6072f6f033e0c87835b414f0836b45bcfaf2bdf698f92297fea1c3cc19b0b258bc182c9c43cc0fab9f2
+  languageName: node
+  linkType: hard
+
 "uuid@npm:^8.3.2":
   version: 8.3.2
   resolution: "uuid@npm:8.3.2"
   bin:
     uuid: dist/bin/uuid
   checksum: 9a5f7aa1d6f56dd1e8d5f2478f855f25c645e64e26e347a98e98d95781d5ed20062d6cca2eecb58ba7c84bc3910be95c0451ef4161906abaab44f9cb68ffbdd1
-  languageName: node
-  linkType: hard
-
-"uuid@npm:^9.0.0, uuid@npm:^9.0.1":
-  version: 9.0.1
-  resolution: "uuid@npm:9.0.1"
-  bin:
-    uuid: dist/bin/uuid
-  checksum: 9d0b6adb72b736e36f2b1b53da0d559125ba3e39d913b6072f6f033e0c87835b414f0836b45bcfaf2bdf698f92297fea1c3cc19b0b258bc182c9c43cc0fab9f2
   languageName: node
   linkType: hard
 
