@@ -25,6 +25,10 @@ export class UserRepositoryImplementation implements UserRepository {
       include: { customer: true, role: true },
     });
 
+    if (!user) {
+      return null;
+    }
+
     return this.entityToModel(user);
   }
 
