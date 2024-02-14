@@ -32,12 +32,12 @@ export class LoginQueryHandler
       throw new UnauthorizedException(ErrorMessage.UNAUTHORIZED);
     }
 
-    const token = await user.generateToken();
+    const accessToken = await user.generateToken();
 
     user.loginSuccess();
 
     user.commit();
 
-    return { token, role: user.getRole() };
+    return { accessToken, role: user.getRole(), email: user.getEmail() };
   }
 }

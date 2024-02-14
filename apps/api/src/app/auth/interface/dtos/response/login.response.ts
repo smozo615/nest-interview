@@ -6,8 +6,11 @@ export class LoginResponseDto {
     example:
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNjI5MzIwNzIyLCJleHAiOjE2MjkzMjA3MjJ9.3Z',
   })
-  token: string;
+  accessToken: string;
 
   @ApiProperty({ example: Roles.Customer })
   role: string;
+
+  @ApiProperty({ example: 'test@test.co' })
+  email: string;
 }

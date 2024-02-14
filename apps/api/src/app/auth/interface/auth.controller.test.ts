@@ -34,8 +34,9 @@ describe('AuthController', () => {
       };
 
       const loginResponse: LoginResponseDto = {
-        token: 'token',
+        accessToken: 'token',
         role: 'role',
+        email: 'test@example.com',
       };
 
       jest

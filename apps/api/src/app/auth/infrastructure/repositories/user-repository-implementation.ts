@@ -38,7 +38,7 @@ export class UserRepositoryImplementation implements UserRepository {
       email: user.email,
       password: user.password,
       role: user.role.name,
-      customerId: user.customer.id,
+      customerId: user.customer?.id || null,
     });
   }
 }

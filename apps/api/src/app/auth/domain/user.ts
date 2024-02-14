@@ -30,6 +30,7 @@ export interface User {
   loginSuccess: () => void;
   commit: () => void;
   getRole: () => string;
+  getEmail: () => string;
 }
 
 export class UserImplementation extends AggregateRoot implements User {
@@ -67,5 +68,9 @@ export class UserImplementation extends AggregateRoot implements User {
 
   getRole() {
     return this.role;
+  }
+
+  getEmail() {
+    return this.email;
   }
 }

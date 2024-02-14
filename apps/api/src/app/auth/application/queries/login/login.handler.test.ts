@@ -45,6 +45,7 @@ describe('LoginQueryHandler', () => {
       loginSuccess: jest.fn(),
       commit: jest.fn(),
       getRole: jest.fn(),
+      getEmail: jest.fn(),
     });
 
     await expect(handler.execute(query)).rejects.toThrow(UnauthorizedException);
@@ -60,11 +61,12 @@ describe('LoginQueryHandler', () => {
       loginSuccess: jest.fn(),
       commit: jest.fn(),
       getRole: jest.fn().mockReturnValueOnce(Roles.Customer),
+      getEmail: jest.fn(),
     });
 
     const result: LoginResponseDto = await handler.execute(query);
 
-    expect(result.token).toBe(token);
+    expect(result.accessToken).toBe(token);
     expect(result.role).toBe(Roles.Customer);
   });
 });
