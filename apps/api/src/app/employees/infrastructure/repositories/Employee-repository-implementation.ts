@@ -46,10 +46,14 @@ export class EmployeeRepositoryImplementation implements EmployeeRepository {
     return employees.map((employee) => this.entityToModel(employee));
   }
 
-  async findById(id: string): Promise<Employee> {
+  async findById(id: string): Promise<Employee | null> {
     const employee = await this.prisma.employee.findUnique({
       where: { id },
     });
+
+    if (!employee) {
+      return null;
+    }
 
     return this.entityToModel(employee);
   }
