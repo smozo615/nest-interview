@@ -18,7 +18,9 @@ export interface Employee {
   getPayRate: () => number;
   getCustomerId: () => string;
   createdSuccessfully: () => void;
+  belongsToCustomer: (customerId: string) => boolean;
   commit: () => void;
+  update: (properties: Partial<EmployeeProperties>) => void;
 }
 
 export class EmployeeImplementation extends AggregateRoot implements Employee {
@@ -55,5 +57,13 @@ export class EmployeeImplementation extends AggregateRoot implements Employee {
 
   createdSuccessfully() {
     this.apply(new CreatedEmployeeEvent(this.name));
+  }
+
+  update(properties: Partial<EmployeeProperties>) {
+    Object.assign(this, properties);
+  }
+
+  belongsToCustomer(customerId: string) {
+    return this.customerId === customerId;
   }
 }

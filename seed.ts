@@ -1,7 +1,7 @@
-import { Prisma, PrismaClient } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
+import { Prisma, PrismaClient } from '@prisma/client';
 
-import { Roles } from '../../../app/auth/roles/constants';
+import { Roles } from './apps/api/src/app/auth/interface/roles/constants';
 
 const prisma = new PrismaClient();
 

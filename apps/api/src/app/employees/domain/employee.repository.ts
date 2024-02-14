@@ -5,6 +5,6 @@ export interface EmployeeRepository {
   create: (employee: Employee) => Promise<void>;
   update: (employee: Employee) => Promise<void>;
   delete: (employee: Employee) => Promise<void>;
-  findAll: () => Promise<Employee[]>;
-  findById: (id: string) => Promise<Employee>;
+  findAll: (customerId: string) => Promise<Employee[]>;
+  findById: (id: string) => Promise<Employee | null>;
 }

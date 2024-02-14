@@ -38,8 +38,10 @@ export class EmployeeRepositoryImplementation implements EmployeeRepository {
     });
   }
 
-  async findAll(): Promise<Employee[]> {
-    const employees = await this.prisma.employee.findMany();
+  async findAll(customerId: string): Promise<Employee[]> {
+    const employees = await this.prisma.employee.findMany({
+      where: { customerId },
+    });
 
     return employees.map((employee) => this.entityToModel(employee));
   }

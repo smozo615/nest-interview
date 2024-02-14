@@ -1,6 +1,8 @@
 export enum ResponseDescription {
   OK = 'The request was successful',
   CREATED = 'The resource was created or the operation not guaranteed to be idempotent succeeded',
+  UPDATED = 'The resource was updated',
+  DELETED = 'The resource was deleted',
   BAD_REQUEST = 'The request is not valid',
   NOT_FOUND = 'No resource found matching the given data',
   UNAUTHORIZED = 'Authentication failed',

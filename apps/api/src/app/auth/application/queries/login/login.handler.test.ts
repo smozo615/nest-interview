@@ -1,19 +1,19 @@
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { LoginHandler } from './login.handler';
+import { LoginQueryHandler } from './login.handler';
 import { LoginQuery } from './login.query';
 import { UserRepository } from '../../../domain/user.repository';
 import { InjectionToken } from '../../constants';
 import { LoginResponseDto } from '../../../interface/dtos/response';
 
-describe('LoginHandler', () => {
-  let handler: LoginHandler;
+describe('LoginQueryHandler', () => {
+  let handler: LoginQueryHandler;
   let userRepository: UserRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        LoginHandler,
+        LoginQueryHandler,
         {
           provide: InjectionToken.USER_REPOSITORY,
           useValue: {
@@ -23,7 +23,7 @@ describe('LoginHandler', () => {
       ],
     }).compile();
 
-    handler = module.get<LoginHandler>(LoginHandler);
+    handler = module.get<LoginQueryHandler>(LoginQueryHandler);
     userRepository = module.get<UserRepository>(InjectionToken.USER_REPOSITORY);
   });
 

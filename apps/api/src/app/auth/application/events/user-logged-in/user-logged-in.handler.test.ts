@@ -1,12 +1,12 @@
-import { UserLoggedInHandler } from './user-logged-in.handler';
+import { UserLoggedInEventHandler } from './user-logged-in.handler';
 
 import { UserLoggedInEvent } from '../../../domain/events/user-logged-in.event';
 
-describe('UserLoggedInHandler', () => {
-  let handler: UserLoggedInHandler;
+describe('UserLoggedInEventHandler', () => {
+  let handler: UserLoggedInEventHandler;
 
   beforeEach(() => {
-    handler = new UserLoggedInHandler();
+    handler = new UserLoggedInEventHandler();
   });
 
   it('should handle the UserLoggedInEvent', async () => {

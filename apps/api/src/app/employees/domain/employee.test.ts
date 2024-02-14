@@ -40,4 +40,26 @@ describe('EmployeeImplementation', () => {
     employee.createdSuccessfully();
     expect(spy).toHaveBeenCalledWith(new CreatedEmployeeEvent(properties.name));
   });
+
+  it('should update the properties when update is called', () => {
+    const newProperties = {
+      name: 'Jane Doe',
+      payType: 'Salary',
+      payRate: 50000,
+      customerId: '456',
+    };
+    employee.update(newProperties);
+    expect(employee.getName()).toEqual(newProperties.name);
+    expect(employee.getPayType()).toEqual(newProperties.payType);
+    expect(employee.getPayRate()).toEqual(newProperties.payRate);
+    expect(employee.getCustomerId()).toEqual(newProperties.customerId);
+  });
+
+  it('should return true if the employee belongs to the customer', () => {
+    expect(employee.belongsToCustomer(properties.customerId)).toEqual(true);
+  });
+
+  it('should return false if the employee does not belong to the customer', () => {
+    expect(employee.belongsToCustomer('456')).toEqual(false);
+  });
 });

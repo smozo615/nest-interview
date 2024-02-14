@@ -3,7 +3,7 @@ import { IsEnum, IsNumber, IsString } from 'class-validator';
 
 import { PayType } from '../../constants';
 
-export class CreateEmployeeRequestDto {
+export class UpdateEmployeeRequestDto {
   @IsString({ message: 'Name must be a string' })
   @ApiProperty({ type: String, description: 'The name of the employee' })
   name: string;

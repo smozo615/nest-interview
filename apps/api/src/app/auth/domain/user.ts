@@ -25,7 +25,7 @@ export type UserOptionalProperties = Readonly<
 export type UserProperties = UserEssentialProperties & UserOptionalProperties;
 
 export interface User {
-  isPasswordValid: (password: string) => Promise<boolean>;
+  isPasswordValid: (password: string) => boolean;
   generateToken: () => Promise<string>;
   loginSuccess: () => void;
   commit: () => void;
@@ -43,7 +43,7 @@ export class UserImplementation extends AggregateRoot implements User {
     Object.assign(this, properties);
   }
 
-  async isPasswordValid(password: string) {
+  isPasswordValid(password: string) {
     return bcrypt.compareSync(password, this.password);
   }
 

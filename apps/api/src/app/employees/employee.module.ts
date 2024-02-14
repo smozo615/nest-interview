@@ -3,8 +3,11 @@ import { CqrsModule } from '@nestjs/cqrs';
 
 // application layer
 import { InjectionToken } from './application/constants';
-import { CreateEmployeeHandler } from './application/commands/create-employee/create-employee.handler';
-import { CreatedEmployeeHandler } from './application/events/created-employee-handler.event';
+import { CreateEmployeeCommandHandler } from './application/commands/create-employee/create-employee.handler';
+import { CreatedEmployeeEventHandler } from './application/events/created-employee-handler.event';
+import { FindAllEmployeesQueryHandler } from './application/queries/find-all-employees/find-all-employees.handler';
+import { UpdateEmployeeCommandHandler } from './application/commands/update-employee/update-employee.handler';
+import { DeleteEmployeeCommandHandler } from './application/commands/delete-employee/delete-employee.handler';
 
 // domain layer
 import { EmployeeFactory } from './domain/employee-factory';
@@ -16,7 +19,13 @@ import { EmployeeRepositoryImplementation } from './infrastructure/repositories/
 import { EmployeeController } from './interface/employee.controller';
 import { PayRatePipe } from './interface/pipes/pay-rate.pipe';
 
-const application: Provider[] = [CreateEmployeeHandler, CreatedEmployeeHandler];
+const application: Provider[] = [
+  CreateEmployeeCommandHandler,
+  CreatedEmployeeEventHandler,
+  FindAllEmployeesQueryHandler,
+  UpdateEmployeeCommandHandler,
+  DeleteEmployeeCommandHandler,
+];
 
 const domain: Provider[] = [EmployeeFactory];
 

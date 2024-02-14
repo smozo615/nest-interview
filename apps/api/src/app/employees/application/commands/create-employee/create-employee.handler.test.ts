@@ -1,20 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateEmployeeHandler } from './create-employee.handler';
-import { CreateEmployeeCommand } from './create-employee.command';
-import { EmployeeRepository } from '../../../domain/employee.repository';
-import { EmployeeFactory } from '../../../domain/employee-factory';
-import { InjectionToken } from '../../constants';
-import { Employee } from '../../../domain/employee';
 
-describe('CreateEmployeeHandler', () => {
-  let handler: CreateEmployeeHandler;
+import { InjectionToken } from '../../constants';
+import { CreateEmployeeCommand } from './create-employee.command';
+import { CreateEmployeeCommandHandler } from './create-employee.handler';
+
+import { Employee } from '../../../domain/employee';
+import { EmployeeFactory } from '../../../domain/employee-factory';
+import { EmployeeRepository } from '../../../domain/employee.repository';
+
+describe('CreateEmployeeCommandHandler', () => {
+  let handler: CreateEmployeeCommandHandler;
   let repository: EmployeeRepository;
   let factory: EmployeeFactory;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        CreateEmployeeHandler,
+        CreateEmployeeCommandHandler,
         {
           provide: InjectionToken.EMPLOYEE_REPOSITORY,
           useValue: {
@@ -31,7 +33,9 @@ describe('CreateEmployeeHandler', () => {
       ],
     }).compile();
 
-    handler = module.get<CreateEmployeeHandler>(CreateEmployeeHandler);
+    handler = module.get<CreateEmployeeCommandHandler>(
+      CreateEmployeeCommandHandler,
+    );
     repository = module.get<EmployeeRepository>(
       InjectionToken.EMPLOYEE_REPOSITORY,
     );
@@ -56,6 +60,8 @@ describe('CreateEmployeeHandler', () => {
         getPayType: jest.fn().mockReturnValue('Hourly'),
         getPayRate: jest.fn().mockReturnValue(20),
         getCustomerId: jest.fn().mockReturnValue('123'),
+        createdSuccessfully: jest.fn(),
+        update: jest.fn(),
       };
 
       jest.spyOn(repository, 'newId').mockResolvedValueOnce(id);

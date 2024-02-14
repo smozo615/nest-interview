@@ -1,11 +1,11 @@
 import { CreatedEmployeeEvent } from '../../domain/events/created-employee.event';
-import { CreatedEmployeeHandler } from './created-employee-handler.event';
+import { CreatedEmployeeEventHandler } from './created-employee-handler.event';
 
 describe('CreatedEmployeeEventHandler', () => {
-  let handler: CreatedEmployeeHandler;
+  let handler: CreatedEmployeeEventHandler;
 
   beforeEach(() => {
-    handler = new CreatedEmployeeHandler();
+    handler = new CreatedEmployeeEventHandler();
   });
 
   it('should handle the CreatedEmployeeEvent', async () => {

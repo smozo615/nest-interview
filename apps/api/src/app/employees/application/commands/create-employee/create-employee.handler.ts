@@ -8,7 +8,7 @@ import { EmployeeRepository } from '../../../domain/employee.repository';
 import { EmployeeFactory } from '../../../domain/employee-factory';
 
 @CommandHandler(CreateEmployeeCommand)
-export class CreateEmployeeHandler
+export class CreateEmployeeCommandHandler
   implements ICommandHandler<CreateEmployeeCommand, void>
 {
   constructor(

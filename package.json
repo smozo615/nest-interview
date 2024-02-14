@@ -170,7 +170,7 @@
   },
   "packageManager": "yarn@4.0.2",
   "prisma": {
-    "seed": "ts-node ./apps/api/src/libs/database/prisma/seed.ts",
-    "schema": "./apps/api/src/libs/database/prisma/schema.prisma"
+    "schema": "./apps/api/src/libs/database/prisma/schema.prisma",
+    "seed": "ts-node ./seed.ts"
   }
 }

@@ -7,8 +7,8 @@ import { ConfigModule, ConfigType } from '@nestjs/config';
 import configurations, { configRoot } from '../../libs/config/configurations';
 
 // Application layer
-import { LoginHandler } from './application/queries/login/login.handler';
-import { UserLoggedInHandler } from './application/events/user-logged-in/user-logged-in.handler';
+import { LoginQueryHandler } from './application/queries/login/login.handler';
+import { UserLoggedInEventHandler } from './application/events/user-logged-in/user-logged-in.handler';
 import { InjectionToken } from './application/constants';
 
 // Domain layer
@@ -21,7 +21,7 @@ import { UserRepositoryImplementation } from './infrastructure/repositories/user
 import { AuthController } from './interface/auth.controller';
 import { JwtStrategy } from './interface/strategies';
 
-const application: Provider[] = [LoginHandler, UserLoggedInHandler];
+const application: Provider[] = [LoginQueryHandler, UserLoggedInEventHandler];
 
 const domain: Provider[] = [UserFactory];
 

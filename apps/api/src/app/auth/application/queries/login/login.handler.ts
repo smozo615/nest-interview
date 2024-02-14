@@ -13,7 +13,7 @@ import { ErrorMessage } from '../../../domain/constants';
 import { UserRepository } from '../../../domain/user.repository';
 
 @QueryHandler(LoginQuery)
-export class LoginHandler
+export class LoginQueryHandler
   implements IQueryHandler<LoginQuery, LoginResponseDto>
 {
   constructor(

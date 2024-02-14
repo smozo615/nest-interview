@@ -3,7 +3,7 @@ import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 import { CreatedEmployeeEvent } from '../../domain/events/created-employee.event';
 
 @EventsHandler(CreatedEmployeeEvent)
-export class CreatedEmployeeHandler
+export class CreatedEmployeeEventHandler
   implements IEventHandler<CreatedEmployeeEvent>
 {
   async handle(event: CreatedEmployeeEvent) {
