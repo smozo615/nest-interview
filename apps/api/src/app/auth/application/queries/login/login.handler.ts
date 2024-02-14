@@ -38,6 +38,6 @@ export class LoginQueryHandler
 
     user.commit();
 
-    return { token };
+    return { token, role: user.getRole() };
   }
 }

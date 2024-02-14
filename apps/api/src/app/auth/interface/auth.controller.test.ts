@@ -35,6 +35,7 @@ describe('AuthController', () => {
 
       const loginResponse: LoginResponseDto = {
         token: 'token',
+        role: 'role',
       };
 
       jest

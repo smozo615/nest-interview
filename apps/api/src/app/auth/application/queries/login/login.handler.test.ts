@@ -5,6 +5,7 @@ import { LoginQuery } from './login.query';
 import { UserRepository } from '../../../domain/user.repository';
 import { InjectionToken } from '../../constants';
 import { LoginResponseDto } from '../../../interface/dtos/response';
+import { Roles } from '../../../interface/roles/constants';
 
 describe('LoginQueryHandler', () => {
   let handler: LoginQueryHandler;
@@ -43,6 +44,7 @@ describe('LoginQueryHandler', () => {
       generateToken: jest.fn(),
       loginSuccess: jest.fn(),
       commit: jest.fn(),
+      getRole: jest.fn(),
     });
 
     await expect(handler.execute(query)).rejects.toThrow(UnauthorizedException);
@@ -57,10 +59,12 @@ describe('LoginQueryHandler', () => {
       generateToken: jest.fn().mockResolvedValueOnce(token),
       loginSuccess: jest.fn(),
       commit: jest.fn(),
+      getRole: jest.fn().mockReturnValueOnce(Roles.Customer),
     });
 
     const result: LoginResponseDto = await handler.execute(query);
 
     expect(result.token).toBe(token);
+    expect(result.role).toBe(Roles.Customer);
   });
 });

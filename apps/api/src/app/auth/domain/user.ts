@@ -29,6 +29,7 @@ export interface User {
   generateToken: () => Promise<string>;
   loginSuccess: () => void;
   commit: () => void;
+  getRole: () => string;
 }
 
 export class UserImplementation extends AggregateRoot implements User {
@@ -62,5 +63,9 @@ export class UserImplementation extends AggregateRoot implements User {
 
   loginSuccess() {
     this.apply(new UserLoggedInEvent(this.email));
+  }
+
+  getRole() {
+    return this.role;
   }
 }
