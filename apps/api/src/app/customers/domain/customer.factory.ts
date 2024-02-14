@@ -1,6 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { EventPublisher } from '@nestjs/cqrs';
-import * as bcrypt from 'bcrypt';
 
 import {
   Customer,
@@ -27,7 +26,7 @@ export class CustomerFactory {
         id: props.id,
         businessName: props.businessName,
         email: props.email,
-        password: bcrypt.hashSync(props.password, 10),
+        password: props.password,
       }),
     );
   }

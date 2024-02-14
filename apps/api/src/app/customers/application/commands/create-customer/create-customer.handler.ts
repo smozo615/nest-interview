@@ -2,6 +2,7 @@ import { BadRequestException, Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 
 import { CreateCustomerCommand } from './create-customer.command';
+import { generateId, hashPassword } from '@ocmi/api/libs/utils';
 import { InjectionToken } from '../../constants';
 
 import { CustomerRepository } from '../../../domain/customer.repository';
@@ -24,13 +25,15 @@ export class CreateCustomerCommandHandler
       throw new BadRequestException('Customer already exists');
     }
 
-    const id = await this.customerRepository.newId();
+    const id = generateId();
+
+    const hashedPassword = await hashPassword(command.password);
 
     const customer = this.customerFactory.createCustomer({
       id,
       businessName: command.businessName,
       email: command.email,
-      password: command.password,
+      password: hashedPassword,
     });
 
     await this.customerRepository.create(customer);

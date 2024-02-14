@@ -1,11 +1,9 @@
-import * as process from 'process';
-import * as bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-
 import { AggregateRoot } from '@nestjs/cqrs';
 
 import { Payload } from '../interface/types';
 import { UserLoggedInEvent } from './events/user-logged-in.event';
+
+import { comparePasswords, generateJwt } from '@ocmi/api/libs/utils';
 
 export type UserEssentialProperties = Readonly<
   Required<{
@@ -46,7 +44,7 @@ export class UserImplementation extends AggregateRoot implements User {
   }
 
   isPasswordValid(password: string) {
-    return bcrypt.compareSync(password, this.password);
+    return comparePasswords(password, this.password);
   }
 
   async generateToken() {
@@ -57,9 +55,7 @@ export class UserImplementation extends AggregateRoot implements User {
       customerId: this.customerId,
     };
 
-    return jwt.sign(payload, process.env.JWT_SECRET || 'secret', {
-      expiresIn: process.env.JWT_EXPIRATION || '1d',
-    });
+    return generateJwt(payload);
   }
 
   loginSuccess() {

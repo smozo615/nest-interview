@@ -8,6 +8,7 @@ import { Customer } from '../../../domain/customer';
 import { CustomerRepository } from '../../../domain/customer.repository';
 import { InjectionToken } from '../../constants';
 import { CustomerFactory } from '../../../domain/customer.factory';
+import { generateId, hashPassword } from '@ocmi/api/libs/utils';
 
 describe('CreateCustomerCommandHandler', () => {
   let handler: ICommandHandler<CreateCustomerCommand, void>;
@@ -52,15 +53,18 @@ describe('CreateCustomerCommandHandler', () => {
         'password',
       );
 
+      const id = generateId();
+
+      const hashedPassword = await hashPassword(command.password);
+
       jest.spyOn(repository, 'exists').mockResolvedValueOnce(false);
-      jest.spyOn(repository, 'newId').mockResolvedValueOnce('123');
 
       const customer: Customer = {
         commit: jest.fn(),
-        getId: jest.fn().mockReturnValue('123'),
+        getId: jest.fn().mockReturnValue(id),
         getBusinessName: jest.fn().mockReturnValue('Business Name'),
         getEmail: jest.fn().mockReturnValue('test@example.com'),
-        getPassword: jest.fn().mockReturnValue('password'),
+        getPassword: jest.fn().mockReturnValue(hashedPassword),
         createdSuccessfully: jest.fn(),
         update: jest.fn(),
       };
@@ -70,13 +74,14 @@ describe('CreateCustomerCommandHandler', () => {
       await handler.execute(command);
 
       expect(repository.exists).toHaveBeenCalledWith('test@example.com');
-      expect(repository.newId).toHaveBeenCalled();
+
       expect(factory.createCustomer).toHaveBeenCalledWith({
-        id: '123',
+        id: expect.any(String),
         businessName: 'Business Name',
         email: 'test@example.com',
-        password: 'password',
+        password: expect.any(String),
       });
+
       expect(factory.createCustomer).toHaveReturnedWith(customer);
       expect(repository.create).toHaveBeenCalledWith(customer);
       expect(customer.createdSuccessfully).toHaveBeenCalled();

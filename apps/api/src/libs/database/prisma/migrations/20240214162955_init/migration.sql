@@ -52,7 +52,7 @@ CREATE TABLE `timesheets` (
     `pay_period_start` DATETIME(3) NOT NULL,
     `pay_period_end` DATETIME(3) NOT NULL,
     `gross_payroll` DECIMAL(65, 30) NOT NULL,
-    `status` ENUM('PENDING', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
+    `status` VARCHAR(191) NOT NULL,
     `notes` VARCHAR(191) NULL,
     `customer_id` VARCHAR(191) NOT NULL,
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),

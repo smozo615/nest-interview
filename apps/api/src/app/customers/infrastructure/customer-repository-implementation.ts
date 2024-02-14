@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Customer as CustomerFromDB, Prisma } from '@prisma/client';
 
@@ -29,10 +28,6 @@ export class CustomerRepositoryImplementation implements CustomerRepository {
     });
 
     return !!user;
-  }
-
-  async newId() {
-    return uuidv4();
   }
 
   async create(customer: Customer): Promise<void> {

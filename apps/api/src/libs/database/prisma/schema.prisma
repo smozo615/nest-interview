@@ -64,7 +64,7 @@ model Timesheet {
   payPeriodStart DateTime         @map("pay_period_start")
   payPeriodEnd   DateTime         @map("pay_period_end")
   grossPayroll   Decimal          @map("gross_payroll")
-  status         TimesheetStatus  @default(PENDING)
+  status         String
   notes          String?
   customerId     String           @map("customer_id")
   customer       Customer         @relation(fields: [customerId], references: [id])
@@ -73,12 +73,6 @@ model Timesheet {
   updatedAt      DateTime         @updatedAt @map("updated_at")
 
   @@map("timesheets")
-}
-
-enum TimesheetStatus {
-  PENDING
-  APPROVED
-  REJECTED
 }
 
 model TimesheetEntry {
