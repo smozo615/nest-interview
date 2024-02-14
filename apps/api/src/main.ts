@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { BadRequestException, Logger, ValidationPipe } from '@nestjs/common';
 import { SwaggerModule } from '@nestjs/swagger';
 // import helmet from 'helmet';
 
@@ -14,7 +14,16 @@ async function bootstrap() {
 
   app.enableCors();
   // app.use(helmet());
-  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      exceptionFactory: (errors) => {
+        const [error] = errors;
+        const message = error.constraints[Object.keys(error.constraints)[0]];
+        return new BadRequestException(message);
+      },
+    }),
+  );
 
   const document = createSwaggerDocument(app);
 

@@ -61,6 +61,7 @@ describe('CreateEmployeeCommandHandler', () => {
         getPayRate: jest.fn().mockReturnValue(20),
         getCustomerId: jest.fn().mockReturnValue('123'),
         createdSuccessfully: jest.fn(),
+        belongsToCustomer: jest.fn().mockReturnValue(true),
         update: jest.fn(),
       };
 

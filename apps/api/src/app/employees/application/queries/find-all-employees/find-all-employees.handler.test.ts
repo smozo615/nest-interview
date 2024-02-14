@@ -43,6 +43,7 @@ describe('FindAllEmployeesQueryHandler', () => {
           commit: jest.fn(),
           createdSuccessfully: jest.fn(),
           update: jest.fn(),
+          belongsToCustomer: jest.fn().mockReturnValue(true),
         },
         {
           getId: jest.fn().mockReturnValue('2'),
@@ -53,6 +54,7 @@ describe('FindAllEmployeesQueryHandler', () => {
           commit: jest.fn(),
           createdSuccessfully: jest.fn(),
           update: jest.fn(),
+          belongsToCustomer: jest.fn().mockReturnValue(true),
         },
       ];
 
