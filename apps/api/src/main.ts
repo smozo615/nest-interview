@@ -17,10 +17,17 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
+      transform: true,
       exceptionFactory: (errors) => {
         const [error] = errors;
-        const message = error.constraints[Object.keys(error.constraints)[0]];
-        return new BadRequestException(message);
+
+        const errorMessage = error.constraints
+          ? error.constraints[Object.keys(error.constraints)[0]]
+          : error.children[0].children[0].constraints[
+              Object.keys(error.children[0].children[0].constraints)[0]
+            ];
+
+        return new BadRequestException(errorMessage);
       },
     }),
   );

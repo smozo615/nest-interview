@@ -8,7 +8,9 @@ import {
   IsNumber,
   IsString,
   ValidateIf,
+  ValidateNested,
 } from 'class-validator';
+import { Type } from 'class-transformer';
 
 export class Entry {
   @ApiProperty({
@@ -90,7 +92,8 @@ export class CreateTimesheetRequestDto {
   payPeriodEnd: string;
 
   @ApiProperty({ type: [Entry] })
-  @IsNotEmpty({ message: 'Entries are required' })
   @IsArray({ message: 'Entries must be an array' })
+  @ValidateNested({ each: true })
+  @Type(() => Entry)
   entries: Entry[];
 }
