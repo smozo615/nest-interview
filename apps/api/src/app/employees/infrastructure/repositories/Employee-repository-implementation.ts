@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Injectable } from '@nestjs/common';
 import { Employee as EmployeeEntity, Prisma } from '@prisma/client';
 
@@ -14,10 +13,6 @@ export class EmployeeRepositoryImplementation implements EmployeeRepository {
     private readonly employeeFactory: EmployeeFactory,
     private readonly prisma: PrismaService,
   ) {}
-
-  async newId() {
-    return uuidv4();
-  }
 
   async create(employee: Employee): Promise<void> {
     await this.prisma.employee.create({

@@ -51,11 +51,8 @@ describe('CreateEmployeeCommandHandler', () => {
         '123',
       );
 
-      const id = repository.newId();
-
-      const employee: Employee = {
+      const employee = {
         commit: jest.fn(),
-        getId: jest.fn().mockReturnValue('456'),
         getName: jest.fn().mockReturnValue('John Doe'),
         getPayType: jest.fn().mockReturnValue('Hourly'),
         getPayRate: jest.fn().mockReturnValue(20),
@@ -63,16 +60,14 @@ describe('CreateEmployeeCommandHandler', () => {
         createdSuccessfully: jest.fn(),
         belongsToCustomer: jest.fn().mockReturnValue(true),
         update: jest.fn(),
-      };
+      } as unknown as Employee;
 
-      jest.spyOn(repository, 'newId').mockResolvedValueOnce(id);
       jest.spyOn(factory, 'createEmployee').mockReturnValueOnce(employee);
 
       await handler.execute(command);
 
-      expect(repository.newId).toHaveBeenCalled();
       expect(factory.createEmployee).toHaveBeenCalledWith({
-        id,
+        id: expect.any(String),
         name: 'John Doe',
         payType: 'Hourly',
         payRate: 20,

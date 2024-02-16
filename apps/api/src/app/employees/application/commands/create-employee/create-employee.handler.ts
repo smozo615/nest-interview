@@ -2,6 +2,7 @@ import { Inject } from '@nestjs/common';
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 
 import { CreateEmployeeCommand } from './create-employee.command';
+import { generateId } from '@ocmi/api/libs/utils';
 import { InjectionToken } from '../../constants';
 
 import { EmployeeRepository } from '../../../domain/employee.repository';
@@ -18,7 +19,7 @@ export class CreateEmployeeCommandHandler
   ) {}
 
   async execute(command: CreateEmployeeCommand) {
-    const id = await this.employeeRepository.newId();
+    const id = generateId();
 
     const employee = this.employeeFactory.createEmployee({
       id,

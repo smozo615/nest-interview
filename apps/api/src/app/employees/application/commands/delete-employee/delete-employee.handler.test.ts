@@ -16,7 +16,6 @@ describe('DeleteEmployeeCommandHandler', () => {
       delete: jest.fn(),
       create: jest.fn(),
       findAll: jest.fn(),
-      newId: jest.fn(),
       update: jest.fn(),
     };
     handler = new DeleteEmployeeCommandHandler(employeeRepository);
